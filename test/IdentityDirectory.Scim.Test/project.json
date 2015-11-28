@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0-*",
+  "description": "IdentityDirectory.Scim.Test Class Library",
+  "authors": [ "aanufriyev" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+    "dnx451": {
+    }
+  },
+  "dependencies": {
+    "IdentityDirectory.Scim": "1.0.0-*",
+    "Moq": "4.2.1510.2205",
+    "xunit.runner.aspnet": "2.0.0-aspnet-*"
+  },
+  "commands": {
+    "test": "xunit.runner.aspnet"
+  }
+}
