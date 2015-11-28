@@ -20,6 +20,14 @@ using IdentityDirectory.Web.Services;
 
 namespace IdentityDirectory.Web
 {
+    using Identity.EntityFramework;
+    using Klaims.Framework.IdentityMangement;
+    using Klaims.Framework.IdentityMangement.Models;
+    using Klaims.Scim.Query;
+    using Klaims.Scim.Rest.Formatters;
+    using Klaims.Scim.Services;
+    using Microsoft.AspNet.Mvc;
+
     public class Startup
     {
         public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
@@ -58,7 +66,10 @@ namespace IdentityDirectory.Web
             //    .AddDefaultTokenProviders();
 
             // Add MVC services to the services container.
-            services.AddMvc();
+            services.AddMvc().AddMvcOptions(options =>
+            {
+                options.OutputFormatters.Add(new ScimJsonOutputFormatter());
+            });
 
             // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
             // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
@@ -67,6 +78,14 @@ namespace IdentityDirectory.Web
             // Register application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            //TODO: move to module definition
+            // Scim services.
+            services.AddTransient<IScimUserManager, DefaultScimUserManager>();
+            services.AddTransient<IUserAccountManager<UserAccount>, DefaultUserAccountManager>();
+            services.AddTransient<IUserAccountRepository<UserAccount>, DatabaseUserAccountRepository>();
+            services.AddTransient<IFilterBinder, DefaultFilterBinder>();
+            services.AddTransient<IAttributeNameMapper, DefaultAttributeNameMapper>();
         }
 
         // Configure is called after ConfigureServices is called.
