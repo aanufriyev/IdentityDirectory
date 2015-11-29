@@ -1,4 +1,4 @@
-﻿namespace Klaims.Scim.Resources
+﻿namespace IdentityDirectory.Scim.Resources
 {
 	public class TypedEnum
 	{

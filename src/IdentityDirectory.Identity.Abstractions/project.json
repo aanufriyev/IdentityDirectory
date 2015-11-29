@@ -1,10 +1,14 @@
-{
+﻿{
   "version": "1.0.0-*",
-  "description": "IdentityDirectory.Identity.EntityFramework Class Library",
-  "authors": [ "aanufriyev" ],
+  "description": "IdentityDirectory.Identity.Abstractions Class Library",
+  "authors": [ "aanuf" ],
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
+  "dependencies": {
+    "IdentityDirectory.Abstractions": "1.0.0-*",
+    "Microsoft.AspNet.Mvc": "6.0.0-beta8"
+  },
   "frameworks": {
     "dnx451": { },
     "dnxcore50": {
@@ -16,12 +20,5 @@
         "System.Threading": "4.0.11-beta-23409"
       }
     }
-  },
-  "dependencies": {
-    "IdentityDirectory.Abstractions": "1.0.0-*",
-    "EntityFramework.Commands": "7.0.0-beta8",
-    "EntityFramework.SqlServer": "7.0.0-beta8",
-    "IdentityDirectory.Identity": "1.0.0-*",
-    "IdentityDirectory.Identity.Abstractions": "1.0.0-*"
   }
 }

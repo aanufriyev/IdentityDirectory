@@ -1,8 +1,8 @@
-﻿namespace Klaims.Scim.Resources
+﻿namespace IdentityDirectory.Scim.Resources
 {
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-	public class ScimListResponse<TResource> : ScimResource
+    public class ScimListResponse<TResource> : ScimResource
 		where TResource : ScimResource
 	{
 		public ScimListResponse(IEnumerable<TResource> resources, int total, int? startIndex = null, int? itemsPerPage = null)

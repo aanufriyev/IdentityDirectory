@@ -1,14 +1,11 @@
-﻿using System;
-
-namespace Klaims.Scim.Endpoints.Filters
+﻿namespace IdentityDirectory.Scim.Endpoints.Filters
 {
-	using Klaims.Scim.Services;
+    using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNet.Mvc.Filters;
+    using Microsoft.Net.Http.Headers;
+    using Services;
 
-	using Microsoft.AspNet.Mvc;
-	using Microsoft.AspNet.Mvc.Filters;
-	using Microsoft.Net.Http.Headers;
-
-	public class ScimExceptionFilterAttribute : ExceptionFilterAttribute
+    public class ScimExceptionFilterAttribute : ExceptionFilterAttribute
 	{
 		private readonly IScimErrorHandler errorHandler = new DefaultScimErrorHandler();
 		// Filed an issue, because cannot get controller here.

@@ -1,8 +1,8 @@
-﻿namespace Klaims.Scim.Exceptions
+﻿namespace IdentityDirectory.Scim.Exceptions
 {
-	using System;
+    using System;
 
-	public class ScimResourceAlreadyExistsException :ScimException
+    public class ScimResourceAlreadyExistsException :ScimException
 	{
 		public ScimResourceAlreadyExistsException(string message, Exception innerException)
 			: base(message, innerException)

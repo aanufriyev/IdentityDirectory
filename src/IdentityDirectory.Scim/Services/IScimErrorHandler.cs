@@ -1,10 +1,9 @@
-﻿using System;
-
-namespace Klaims.Scim.Services
+﻿namespace IdentityDirectory.Scim.Services
 {
-	using Klaims.Scim.Resources;
+    using System;
+    using Resources;
 
-	public interface IScimErrorHandler
+    public interface IScimErrorHandler
 	{
 		ScimError Handle(Exception exception);
 	}

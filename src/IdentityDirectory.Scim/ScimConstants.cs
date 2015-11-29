@@ -1,4 +1,4 @@
-﻿namespace Klaims.Scim
+﻿namespace IdentityDirectory.Scim
 {
     public class ScimConstants
     {

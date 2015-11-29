@@ -1,9 +1,9 @@
-﻿namespace Klaims.Scim.Exceptions
+﻿namespace IdentityDirectory.Scim.Exceptions
 {
-	using System;
-	using System.Diagnostics.CodeAnalysis;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
 
-	public class InvalidScimOperationException : ScimException
+    public class InvalidScimOperationException : ScimException
 	{
 		public InvalidScimOperationException(string message, ScimType type, Exception innerException)
 			: base(message, innerException)

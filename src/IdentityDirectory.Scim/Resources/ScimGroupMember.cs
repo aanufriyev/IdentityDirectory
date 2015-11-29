@@ -1,13 +1,11 @@
-﻿namespace Klaims.Scim.Resources
+﻿namespace IdentityDirectory.Scim.Resources
 {
-	using System;
-	using System.Collections.Generic;
+    using System;
+    using System.Collections.Generic;
+    using Klaims.Framework;
+    using Newtonsoft.Json;
 
-	using Klaims.Framework;
-
-	using Newtonsoft.Json;
-
-	public class ScimGroupMember
+    public class ScimGroupMember
 	{
 		public enum MemberType
 		{

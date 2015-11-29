@@ -23,10 +23,10 @@ namespace IdentityDirectory.Web
     using Identity.EntityFramework;
     using Klaims.Framework.IdentityMangement;
     using Klaims.Framework.IdentityMangement.Models;
-    using Klaims.Scim.Query;
-    using Klaims.Scim.Rest.Formatters;
-    using Klaims.Scim.Services;
     using Microsoft.AspNet.Mvc;
+    using Scim;
+    using Scim.Query;
+    using Scim.Services;
 
     public class Startup
     {

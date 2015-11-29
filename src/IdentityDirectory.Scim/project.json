@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "IdentityDirectory.Abstractions": "1.0.0-*",
+    "IdentityDirectory.Identity": "1.0.0-*",
     "Microsoft.AspNet.Mvc": "6.0.0-beta8"
   }
 }

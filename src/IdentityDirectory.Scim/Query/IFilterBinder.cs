@@ -1,13 +1,11 @@
-﻿namespace Klaims.Scim.Query
+﻿namespace IdentityDirectory.Scim.Query
 {
-	using System;
-	using System.Linq.Expressions;
+    using System;
+    using System.Linq.Expressions;
+    using Services;
 
-	using Klaims.Scim.Query.Filter;
-	using Klaims.Scim.Services;
-
-	public interface IFilterBinder
+    public interface IFilterBinder
 	{
-		Expression<Func<TResource, bool>> Bind<TResource>(FilterNode filter, string sortBy, bool @ascending, IAttributeNameMapper mapper = null);
+		Expression<Func<TResource, bool>> Bind<TResource>(FilterExpresstion filter, string sortBy, bool @ascending, IAttributeNameMapper mapper = null);
 	}
 }

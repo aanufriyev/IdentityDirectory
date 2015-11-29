@@ -1,10 +1,9 @@
-﻿namespace Klaims.Scim.Endpoints
+﻿namespace IdentityDirectory.Scim.Endpoints
 {
-	using Klaims.Scim.Endpoints.Filters;
+    using Filters;
+    using Microsoft.AspNet.Mvc;
 
-	using Microsoft.AspNet.Mvc;
-
-	[Produces(ScimConstants.ScimMediaType)]
+    [Produces(ScimConstants.ScimMediaType)]
 	[ScimExceptionFilter]
 	public class ScimEndpoint : Controller
 	{

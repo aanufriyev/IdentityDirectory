@@ -1,10 +1,10 @@
-﻿namespace Klaims.Scim.Resources
+﻿namespace IdentityDirectory.Scim.Resources
 {
 	#region
 
-	using System;
+    using System;
 
-	#endregion
+    #endregion
 
 	public class ScimMetadata
 	{

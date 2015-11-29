@@ -23,6 +23,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{00AA91E0-5
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityDirectory.Scim.Test", "test\IdentityDirectory.Scim.Test\IdentityDirectory.Scim.Test.xproj", "{6A66CCFD-3EA0-45EA-82A9-A63F2EDA337D}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityDirectory.Identity.Abstractions", "src\IdentityDirectory.Identity.Abstractions\IdentityDirectory.Identity.Abstractions.xproj", "{5DA84424-8F65-495A-99EF-5A855EC4769A}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityDirectory.Identity", "src\IdentityDirectory.Identity\IdentityDirectory.Identity.xproj", "{BF214CAE-8376-4ABE-A476-13FFB6B997FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,14 @@ Global
 		{6A66CCFD-3EA0-45EA-82A9-A63F2EDA337D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A66CCFD-3EA0-45EA-82A9-A63F2EDA337D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A66CCFD-3EA0-45EA-82A9-A63F2EDA337D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DA84424-8F65-495A-99EF-5A855EC4769A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DA84424-8F65-495A-99EF-5A855EC4769A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DA84424-8F65-495A-99EF-5A855EC4769A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DA84424-8F65-495A-99EF-5A855EC4769A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF214CAE-8376-4ABE-A476-13FFB6B997FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF214CAE-8376-4ABE-A476-13FFB6B997FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF214CAE-8376-4ABE-A476-13FFB6B997FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF214CAE-8376-4ABE-A476-13FFB6B997FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,5 +71,7 @@ Global
 		{6B12EB9E-3581-42E0-BD3C-8D8D5D11E5DE} = {54E3D036-53DA-4940-9F91-00ABAA988B0C}
 		{C9D5395A-D629-4DE2-A461-74D6618BD33C} = {54E3D036-53DA-4940-9F91-00ABAA988B0C}
 		{6A66CCFD-3EA0-45EA-82A9-A63F2EDA337D} = {00AA91E0-57EB-4862-8793-B9D88524A827}
+		{5DA84424-8F65-495A-99EF-5A855EC4769A} = {54E3D036-53DA-4940-9F91-00ABAA988B0C}
+		{BF214CAE-8376-4ABE-A476-13FFB6B997FF} = {54E3D036-53DA-4940-9F91-00ABAA988B0C}
 	EndGlobalSection
 EndGlobal

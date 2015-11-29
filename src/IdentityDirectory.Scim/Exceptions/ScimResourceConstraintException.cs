@@ -1,8 +1,8 @@
-﻿namespace Klaims.Scim.Exceptions
+﻿namespace IdentityDirectory.Scim.Exceptions
 {
-	using System;
+    using System;
 
-	public class ScimResourceConstraintException : ScimException
+    public class ScimResourceConstraintException : ScimException
 	{
 		public ScimResourceConstraintException(string message, Exception innerException)
 			: base(message, innerException)

@@ -1,104 +1,102 @@
-namespace Klaims.Scim.Query
+namespace IdentityDirectory.Scim.Query
 {
     using System;
     using System.Linq.Expressions;
     using System.Reflection;
     using Klaims.Framework.Utility;
-    using Klaims.Scim.Query.Filter;
-    using Klaims.Scim.Services;
+    using Services;
 
     public class DefaultFilterBinder : IFilterBinder
     {
-        public Expression<Func<TResource, bool>> Bind<TResource>(FilterNode filterNode, string sortBy, bool @ascending, IAttributeNameMapper mapper = null)
+        public Expression<Func<TResource, bool>> Bind<TResource>(FilterExpresstion filter, string sortBy, bool ascending, IAttributeNameMapper mapper = null)
         {
-            return this.BuildExpression<TResource>(filterNode, mapper, null);
+            return this.BuildExpression<TResource>(filter, mapper, null);
         }
 
-        private Expression<Func<TResource, bool>> BuildExpression<TResource>(FilterNode filter, IAttributeNameMapper mapper, string prefix)
+        private Expression<Func<TResource, bool>> BuildExpression<TResource>(FilterExpresstion filter, IAttributeNameMapper mapper, string prefix)
         {
-            var branchNode = filter as BranchNode;
-            var terminalNode = filter as TerminalNode;
-
-            if (branchNode != null)
+            var logicalExpression = filter as LogicalExpression;
+            if (logicalExpression != null)
             {
-                return this.BindBranchNode<TResource>(filter, mapper, prefix, branchNode);
+                return this.BindLogicalExpression<TResource>(filter, mapper, prefix, logicalExpression);
             }
 
-            if (terminalNode != null)
+            var valueExpression = filter as ValueExpression;
+            if (valueExpression != null)
             {
-                return this.BindTerminalNode<TResource>(filter, mapper, terminalNode);
+                return this.BindValueExpression<TResource>(filter, mapper, valueExpression);
             }
 
             throw new InvalidOperationException("Unknown node type");
         }
 
-        protected virtual Expression<Func<TResource, bool>> BindTerminalNode<TResource>(FilterNode filter, IAttributeNameMapper mapper, TerminalNode terminalNode)
+        protected virtual Expression<Func<TResource, bool>> BindValueExpression<TResource>(FilterExpresstion filter, IAttributeNameMapper mapper, ValueExpression expression)
         {
             var parameter = Expression.Parameter(typeof(TResource));
-            var property = Expression.Property(parameter, mapper.MapToInternal(terminalNode.Attribute));
+            var property = Expression.Property(parameter, mapper.MapToInternal(expression.Attribute));
 
-            Expression expression = null;
-            if (filter.Operator.Equals(Operator.Eq))
+            Expression binaryExpression = null;
+            if (filter.Operator.Equals(ExpresssionOperator.Eq))
             {
                 // Workaround for missing coersion between String and Guid types.
-                var propertyValue = property.Type == typeof(Guid) ? (object)Guid.Parse(terminalNode.Value) : terminalNode.Value;
-                expression = Expression.Equal(property, Expression.Convert(Expression.Constant(propertyValue), property.Type));
+                var propertyValue = property.Type == typeof(Guid) ? (object)Guid.Parse(expression.Value) : expression.Value;
+                binaryExpression = Expression.Equal(property, Expression.Convert(Expression.Constant(propertyValue), property.Type));
             }
-            else if (filter.Operator.Equals(Operator.Co))
+            else if (filter.Operator.Equals(ExpresssionOperator.Co))
             {
                 var method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
-                expression = Expression.Call(property, method, Expression.Constant(terminalNode.Value, typeof(string)));
+                binaryExpression = Expression.Call(property, method, Expression.Constant(expression.Value, typeof(string)));
             }
-            else if (filter.Operator.Equals(Operator.Gt))
+            else if (filter.Operator.Equals(ExpresssionOperator.Gt))
             {
-                expression = Expression.GreaterThan(property, Expression.Convert(Expression.Constant(terminalNode.Value), property.Type));
+                binaryExpression = Expression.GreaterThan(property, Expression.Convert(Expression.Constant(expression.Value), property.Type));
             }
-            else if (filter.Operator.Equals(Operator.Ge))
+            else if (filter.Operator.Equals(ExpresssionOperator.Ge))
             {
-                expression = Expression.GreaterThanOrEqual(property, Expression.Convert(Expression.Constant(terminalNode.Value), property.Type));
+                binaryExpression = Expression.GreaterThanOrEqual(property, Expression.Convert(Expression.Constant(expression.Value), property.Type));
             }
-            else if (filter.Operator.Equals(Operator.Lt))
+            else if (filter.Operator.Equals(ExpresssionOperator.Lt))
             {
-                expression = Expression.LessThan(property, Expression.Convert(Expression.Constant(terminalNode.Value), property.Type));
+                binaryExpression = Expression.LessThan(property, Expression.Convert(Expression.Constant(expression.Value), property.Type));
             }
-            else if (filter.Operator.Equals(Operator.Le))
+            else if (filter.Operator.Equals(ExpresssionOperator.Le))
             {
-                expression = Expression.LessThanOrEqual(property, Expression.Convert(Expression.Constant(terminalNode.Value), property.Type));
+                binaryExpression = Expression.LessThanOrEqual(property, Expression.Convert(Expression.Constant(expression.Value), property.Type));
             }
-            else if (filter.Operator.Equals(Operator.Pr))
+            else if (filter.Operator.Equals(ExpresssionOperator.Pr))
             {
                 // We need to counter guid and other non nullable value types. 
                 // If value cannot be null, then it is always present.
                 if (IsNullable(property.Type))
                 {
-                    expression = Expression.NotEqual(property, Expression.Constant(null, property.Type));
+                    binaryExpression = Expression.NotEqual(property, Expression.Constant(null, property.Type));
                 }
                 else
                 {
-                    expression = Expression.Constant(true);
+                    binaryExpression = Expression.Constant(true);
                 }
             }
-            if (expression == null)
+            if (binaryExpression == null)
             {
                 throw new InvalidOperationException("Unsupported node operator");
             }
 
-            return Expression.Lambda<Func<TResource, bool>>(expression, parameter);
+            return Expression.Lambda<Func<TResource, bool>>(binaryExpression, parameter);
         }
 
-        protected virtual Expression<Func<TResource, bool>> BindBranchNode<TResource>(
-            FilterNode filter,
+        protected virtual Expression<Func<TResource, bool>> BindLogicalExpression<TResource>(
+            FilterExpresstion filter,
             IAttributeNameMapper mapper,
             string prefix,
-            BranchNode branchNode)
+            LogicalExpression expression)
         {
-            var leftNodeExpression = this.BuildExpression<TResource>(branchNode.Left, mapper, prefix);
-            var rightNodeExpression = this.BuildExpression<TResource>(branchNode.Right, mapper, prefix);
-            if (filter.Operator.Equals(Operator.And))
+            var leftNodeExpression = this.BuildExpression<TResource>(expression.Left, mapper, prefix);
+            var rightNodeExpression = this.BuildExpression<TResource>(expression.Right, mapper, prefix);
+            if (filter.Operator.Equals(ExpresssionOperator.And))
             {
                 return leftNodeExpression.And(rightNodeExpression);
             }
-            if (filter.Operator.Equals(Operator.Or))
+            if (filter.Operator.Equals(ExpresssionOperator.Or))
             {
                 return leftNodeExpression.Or(rightNodeExpression);
             }

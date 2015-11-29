@@ -1,7 +1,7 @@
 {
   "version": "1.0.0-*",
-  "description": "IdentityDirectory.Identity.EntityFramework Class Library",
-  "authors": [ "aanufriyev" ],
+  "description": "IdentityDirectory.Identity Class Library",
+  "authors": [ "aanuf" ],
   "tags": [ "" ],
   "projectUrl": "",
   "licenseUrl": "",
@@ -18,10 +18,6 @@
     }
   },
   "dependencies": {
-    "IdentityDirectory.Abstractions": "1.0.0-*",
-    "EntityFramework.Commands": "7.0.0-beta8",
-    "EntityFramework.SqlServer": "7.0.0-beta8",
-    "IdentityDirectory.Identity": "1.0.0-*",
     "IdentityDirectory.Identity.Abstractions": "1.0.0-*"
   }
 }

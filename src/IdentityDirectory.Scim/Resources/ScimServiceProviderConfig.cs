@@ -1,9 +1,8 @@
-﻿namespace Klaims.Scim.Resources
+﻿namespace IdentityDirectory.Scim.Resources
 {
-	using System;
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-	public class ScimServiceProviderConfig : ScimResource
+    public class ScimServiceProviderConfig : ScimResource
 	{
 
 		public ScimServiceProviderConfig()

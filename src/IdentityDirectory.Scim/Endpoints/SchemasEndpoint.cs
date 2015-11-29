@@ -1,4 +1,4 @@
-﻿namespace Klaims.Scim.Endpoints
+﻿namespace IdentityDirectory.Scim.Endpoints
 {
     using Microsoft.AspNet.Mvc;
 

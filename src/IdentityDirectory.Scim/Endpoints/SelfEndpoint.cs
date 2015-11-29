@@ -1,13 +1,11 @@
-﻿namespace Klaims.Scim.Endpoints
+﻿namespace IdentityDirectory.Scim.Endpoints
 {
-	using System;
+    using System;
+    using Microsoft.AspNet.Mvc;
+    using Resources;
+    using Services;
 
-	using Klaims.Scim.Resources;
-	using Klaims.Scim.Services;
-
-	using Microsoft.AspNet.Mvc;
-
-	[Route(ScimConstants.Routes.Templates.Self)]
+    [Route(ScimConstants.Routes.Templates.Self)]
 	public class SelfEndpoint : ScimEndpoint
 	{
 		private readonly IScimUserManager resourceManager;

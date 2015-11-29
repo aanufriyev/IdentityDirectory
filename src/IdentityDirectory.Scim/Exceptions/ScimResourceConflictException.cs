@@ -1,8 +1,8 @@
-﻿namespace Klaims.Scim.Exceptions
+﻿namespace IdentityDirectory.Scim.Exceptions
 {
-	using System;
+    using System;
 
-	public class ScimResourceConflictException :ScimException
+    public class ScimResourceConflictException :ScimException
 	{
 		public ScimResourceConflictException(string message, Exception innerException)
 			: base(message, innerException)

@@ -1,9 +1,8 @@
-﻿namespace Klaims.Scim.Services
+﻿namespace IdentityDirectory.Scim.Services
 {
-	using Klaims.Scim.Resources;
-	using Klaims.Scim.Rest;
+    using Resources;
 
-	public interface IScimUserManager : IQueryableResourceManager<ScimUser>
+    public interface IScimUserManager : IQueryableResourceManager<ScimUser>
 	{
 		ScimUser CreateUser(ScimUser user, string password);
 

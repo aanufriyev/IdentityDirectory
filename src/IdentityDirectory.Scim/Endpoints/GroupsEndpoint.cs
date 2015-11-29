@@ -1,10 +1,8 @@
-﻿namespace Klaims.Scim.Endpoints
+﻿namespace IdentityDirectory.Scim.Endpoints
 {
-	using Microsoft.AspNet.Mvc;
+    using Microsoft.AspNet.Mvc;
 
-
-
-	[Route(ScimConstants.Routes.Templates.Groups)]
+    [Route(ScimConstants.Routes.Templates.Groups)]
 	public class GroupsEndpoint : Controller
 	{
 	}

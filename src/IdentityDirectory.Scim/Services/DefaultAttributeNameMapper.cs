@@ -1,4 +1,4 @@
-﻿namespace Klaims.Scim.Services
+﻿namespace IdentityDirectory.Scim.Services
 {
 	public class DefaultAttributeNameMapper :IAttributeNameMapper
 	{

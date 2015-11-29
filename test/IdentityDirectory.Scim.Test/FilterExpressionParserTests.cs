@@ -2,9 +2,8 @@
 
 namespace Klaims.Scim.Tests
 {
-	using Klaims.Scim.Query.Filter;
-
-	using Xunit;
+    using IdentityDirectory.Scim.Query;
+    using Xunit;
 
 	public class ScimFilterParserTests
     {
@@ -14,14 +13,14 @@ namespace Klaims.Scim.Tests
 		[Fact]
 		public void CanParseSimpleFilter()
 		{
-			var rootNode = UriFilterExpressionParser.Parse(SimpleFilter);
+			var rootNode = FilterExpressionParser.Parse(SimpleFilter);
 			Assert.NotNull(rootNode);
 			Console.WriteLine(rootNode);
 		}
 		[Fact]
 		public void CanParseFilterWithPrecedence()
 		{
-			var rootNode = UriFilterExpressionParser.Parse(PrecedenceFilter);
+			var rootNode = FilterExpressionParser.Parse(PrecedenceFilter);
 			Assert.NotNull(rootNode);
 			Console.WriteLine(rootNode);
 		}

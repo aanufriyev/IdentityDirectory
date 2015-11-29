@@ -1,8 +1,8 @@
-﻿namespace Klaims.Scim.Exceptions
+﻿namespace IdentityDirectory.Scim.Exceptions
 {
-	using System;
+    using System;
 
-	public class ScimException : Exception
+    public class ScimException : Exception
 	{
 		public ScimException(string message, Exception innerException)
 			: base(message, innerException)

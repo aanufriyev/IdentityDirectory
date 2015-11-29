@@ -1,10 +1,9 @@
-﻿namespace Klaims.Scim.Resources
+﻿namespace IdentityDirectory.Scim.Resources
 {
-	using System.Net;
+    using System.Net;
+    using Exceptions;
 
-	using Klaims.Scim.Exceptions;
-
-	public class ScimError
+    public class ScimError
 	{
 		public ScimError(HttpStatusCode code, string detail)
 			: this(code, null, detail)

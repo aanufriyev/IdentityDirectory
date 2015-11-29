@@ -1,13 +1,12 @@
-﻿namespace Klaims.Scim.Services
+﻿namespace IdentityDirectory.Scim.Services
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Net;
+    using System;
+    using System.Collections.Generic;
+    using System.Net;
+    using Exceptions;
+    using Resources;
 
-	using Klaims.Scim.Exceptions;
-	using Klaims.Scim.Resources;
-
-	public class DefaultScimErrorHandler : IScimErrorHandler
+    public class DefaultScimErrorHandler : IScimErrorHandler
 	{
 		private static readonly Dictionary<Type, HttpStatusCode> BaseExceptionsMap = new Dictionary<Type, HttpStatusCode>();
 

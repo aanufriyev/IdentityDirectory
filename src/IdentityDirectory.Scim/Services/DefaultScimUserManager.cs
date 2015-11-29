@@ -1,17 +1,15 @@
-﻿namespace Klaims.Scim.Services
+﻿namespace IdentityDirectory.Scim.Services
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using IdentityDirectory.Scim.Query;
+    using Klaims.Framework.IdentityMangement;
+    using Klaims.Framework.IdentityMangement.Models;
+    using Klaims.Framework.Utility;
+    using Resources;
 
-	using Klaims.Framework.IdentityMangement;
-	using Klaims.Framework.IdentityMangement.Models;
-	using Klaims.Framework.Utility;
-	using Klaims.Scim.Query;
-	using Klaims.Scim.Query.Filter;
-	using Klaims.Scim.Resources;
-
-	public class DefaultScimUserManager : IScimUserManager
+    public class DefaultScimUserManager : IScimUserManager
 	{
 		private readonly IFilterBinder filterBinder;
 
@@ -29,7 +27,7 @@
 		public IEnumerable<ScimUser> Query(string filter)
 		{
 			Check.Argument.IsNotNullOrEmpty(filter, "filter");
-			var filterNode = UriFilterExpressionParser.Parse(filter);
+			var filterNode = FilterExpressionParser.Parse(filter);
 			var predicate = this.filterBinder.Bind<UserAccount>(filterNode, null, true, this.mapper);
 			var results = this.userAccountManager.Queryable.Search(predicate, null, null);
 			return results.Select(this.ToScimUser);
@@ -38,7 +36,7 @@
 		public IEnumerable<ScimUser> Query(string filter, int skip, int count)
 		{
 			Check.Argument.IsNotNullOrEmpty(filter, "filter");
-			var filterNode = UriFilterExpressionParser.Parse(filter);
+			var filterNode = FilterExpressionParser.Parse(filter);
 			var predicate = this.filterBinder.Bind<UserAccount>(filterNode, null, true, this.mapper);
 			var results = this.userAccountManager.Queryable.Search(predicate, null, null);
 			return results.Select(this.ToScimUser);

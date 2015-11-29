@@ -1,8 +1,8 @@
-﻿namespace Klaims.Scim.Resources
+﻿namespace IdentityDirectory.Scim.Resources
 {
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-	public class ScimSchema :ScimResource
+    public class ScimSchema :ScimResource
 	{
 		public ScimSchema(string id) :base(id)
 		{

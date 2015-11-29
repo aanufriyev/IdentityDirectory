@@ -1,8 +1,8 @@
-﻿namespace Klaims.Scim.Exceptions
+﻿namespace IdentityDirectory.Scim.Exceptions
 {
-	using System;
+    using System;
 
-	public class ScimResourceNotFoundException :ScimException
+    public class ScimResourceNotFoundException :ScimException
 	{
 		public ScimResourceNotFoundException(string message, Exception innerException)
 			: base(message, innerException)

@@ -1,8 +1,8 @@
-﻿namespace Klaims.Scim.Resources
+﻿namespace IdentityDirectory.Scim.Resources
 {
-	using System.Collections.Generic;
+    using System.Collections.Generic;
 
-	public class ScimGroup : ScimResource
+    public class ScimGroup : ScimResource
 	{
 		public ScimGroup()
 		{

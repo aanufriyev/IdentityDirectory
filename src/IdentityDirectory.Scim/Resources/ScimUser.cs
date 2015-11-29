@@ -1,17 +1,15 @@
-﻿namespace Klaims.Scim.Resources
+﻿namespace IdentityDirectory.Scim.Resources
 {
 	#region
 
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Klaims.Framework.Utility;
+    using Klaims.Framework.Utility.Extensions;
+    using Newtonsoft.Json;
 
-	using Framework.Utility;
-	using Framework.Utility.Extensions;
-
-	using Newtonsoft.Json;
-
-	#endregion
+    #endregion
 
 	public class ScimUser : ScimResource
 	{
@@ -195,11 +193,11 @@
 			public override int GetHashCode()
 			{
 				//TODO: Need imutable hascode
-				const int Prime = 31;
+				const int prime = 31;
 				var result = 1;
-				result = Prime * result + (this.Display?.GetHashCode() ?? 0);
-				result = Prime * result + (this.Value?.GetHashCode() ?? 0);
-				result = Prime * result + (this.Type?.GetHashCode() ?? 0);
+				result = prime * result + (this.Display?.GetHashCode() ?? 0);
+				result = prime * result + (this.Value?.GetHashCode() ?? 0);
+				result = prime * result + (this.Type?.GetHashCode() ?? 0);
 				return result;
 			}
 
@@ -245,7 +243,7 @@
 
 			public override string ToString()
 			{
-				return string.Format("(id: {0}, name: {1}, type: {2})", this.Value, this.Display, this.Type);
+				return $"(id: {this.Value}, name: {this.Display}, type: {this.Type})";
 			}
 
 			public class MembershipType
