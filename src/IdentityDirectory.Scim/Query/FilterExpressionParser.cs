@@ -7,6 +7,7 @@ namespace IdentityDirectory.Scim.Query
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using Microsoft.AspNet.Mvc.Filters;
 
     #endregion
 
@@ -14,6 +15,7 @@ namespace IdentityDirectory.Scim.Query
     {
         public static FilterExpresstion Parse(string filter)
         {
+            Console.WriteLine("Parse:" + filter);
             if (filter == null)
             {
                 return null;
@@ -30,12 +32,10 @@ namespace IdentityDirectory.Scim.Query
                     case ' ':
                         position.Increment();
                         continue;
-
                     case '(':
                         var group = GetWithinParenthesis(position, filter);
                         next = Parse(group);
                         break;
-
                     default:
                         next = ParseNode(position, filter);
                         break;
@@ -80,7 +80,9 @@ namespace IdentityDirectory.Scim.Query
 
         private static FilterExpresstion ParseNode(Position position, string filter)
         {
+            Console.WriteLine("ParseNode.filter:" + filter);
             var attribute = ParseToken(position, filter);
+            Console.WriteLine("ParseNode.attribute:" + attribute);
 
             var branchOperator = ExpresssionOperator.GetByName(attribute);
 
@@ -174,7 +176,6 @@ namespace IdentityDirectory.Scim.Query
 
                 prevChar = c;
             }
-
             return sb.ToString();
         }
 

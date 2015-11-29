@@ -1,6 +1,7 @@
 namespace IdentityDirectory.Scim.Query
 {
     using System;
+    using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
     using Klaims.Framework.Utility;
@@ -33,7 +34,9 @@ namespace IdentityDirectory.Scim.Query
         protected virtual Expression<Func<TResource, bool>> BindValueExpression<TResource>(FilterExpresstion filter, IAttributeNameMapper mapper, ValueExpression expression)
         {
             var parameter = Expression.Parameter(typeof(TResource));
-            var property = Expression.Property(parameter, mapper.MapToInternal(expression.Attribute));
+            var property = mapper.MapToInternal(expression.Attribute)
+                .Split('.')
+                .Aggregate<string, Expression>(parameter,Expression.PropertyOrField);
 
             Expression binaryExpression = null;
             if (filter.Operator.Equals(ExpresssionOperator.Eq))
@@ -65,7 +68,6 @@ namespace IdentityDirectory.Scim.Query
             }
             else if (filter.Operator.Equals(ExpresssionOperator.Pr))
             {
-                // We need to counter guid and other non nullable value types. 
                 // If value cannot be null, then it is always present.
                 if (IsNullable(property.Type))
                 {
