@@ -27,7 +27,7 @@
 		public IEnumerable<ScimUser> Query(string filter)
 		{
 			Check.Argument.IsNotNullOrEmpty(filter, "filter");
-			var filterNode = FilterExpressionParser.Parse(filter);
+			var filterNode = ScimExpressionParser.ParseExpression(filter);
 			var predicate = this.filterBinder.Bind<UserAccount>(filterNode, null, true, this.mapper);
 			var results = this.userAccountManager.Queryable.Search(predicate, null, null);
 			return results.Select(this.ToScimUser);
@@ -36,7 +36,7 @@
 		public IEnumerable<ScimUser> Query(string filter, int skip, int count)
 		{
 			Check.Argument.IsNotNullOrEmpty(filter, "filter");
-			var filterNode = FilterExpressionParser.Parse(filter);
+			var filterNode = ScimExpressionParser.ParseExpression(filter);
 			var predicate = this.filterBinder.Bind<UserAccount>(filterNode, null, true, this.mapper);
 			var results = this.userAccountManager.Queryable.Search(predicate, null, null);
 			return results.Select(this.ToScimUser);

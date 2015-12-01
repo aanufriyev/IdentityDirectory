@@ -36,13 +36,10 @@ namespace Klaims.Scim.Tests
         [Fact]
         public void CanParseCollectionFilter()
         {
-            var rootNode = FilterExpressionParser.Parse(CollectionFilter);
+            var rootNode = ScimExpressionParser.ParseExpression(CollectionFilter);
             Assert.NotNull(rootNode);
             Console.WriteLine(rootNode);
-            Console.WriteLine(rootNode.Operator);
-            var expr = (ValueExpression) rootNode;
-            Console.WriteLine(expr.Attribute);
-            Console.WriteLine(expr.Value);
+            
         }
     }
 }

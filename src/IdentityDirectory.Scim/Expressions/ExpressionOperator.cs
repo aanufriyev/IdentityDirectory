@@ -6,35 +6,35 @@
 
     #endregion
 
-    public sealed class ExpresssionOperator
+    public sealed class ExpressionOperator
     {
-        public static readonly ExpresssionOperator And = new ExpresssionOperator("and", "logical and");
+        public static readonly ExpressionOperator And = new ExpressionOperator("and", "logical and");
 
-        public static readonly ExpresssionOperator Co = new ExpresssionOperator("co", "contains");
+        public static readonly ExpressionOperator Co = new ExpressionOperator("co", "contains");
 
-        public static readonly ExpresssionOperator Eq = new ExpresssionOperator("eq", "equal");
+        public static readonly ExpressionOperator Eq = new ExpressionOperator("eq", "equal");
 
-        public static readonly ExpresssionOperator Ge = new ExpresssionOperator("ge", "greater than or equal");
+        public static readonly ExpressionOperator Ge = new ExpressionOperator("ge", "greater than or equal");
 
-        public static readonly ExpresssionOperator Gt = new ExpresssionOperator("gt", "greater than");
+        public static readonly ExpressionOperator Gt = new ExpressionOperator("gt", "greater than");
 
-        public static readonly ExpresssionOperator Le = new ExpresssionOperator("le", "less than or equal");
+        public static readonly ExpressionOperator Le = new ExpressionOperator("le", "less than or equal");
 
-        public static readonly ExpresssionOperator Lt = new ExpresssionOperator("lt", "less than");
+        public static readonly ExpressionOperator Lt = new ExpressionOperator("lt", "less than");
 
-        public static readonly ExpresssionOperator Or = new ExpresssionOperator("or", "logical or");
+        public static readonly ExpressionOperator Or = new ExpressionOperator("or", "logical or");
 
-        public static readonly ExpresssionOperator Pr = new ExpresssionOperator("pr", "present (has value)");
+        public static readonly ExpressionOperator Pr = new ExpressionOperator("pr", "present (has value)");
 
-        public static readonly ExpresssionOperator Sw = new ExpresssionOperator("sw", "starts with");
+        public static readonly ExpressionOperator Sw = new ExpressionOperator("sw", "starts with");
 
-        public static readonly ExpresssionOperator Unknown = new ExpresssionOperator("", "unknown operator");
+        public static readonly ExpressionOperator Unknown = new ExpressionOperator("", "unknown operator");
 
         private readonly string _description;
 
         private readonly string _name;
 
-        private ExpresssionOperator(string val, string desc)
+        private ExpressionOperator(string val, string desc)
         {
             _name = val;
             _description = desc;
@@ -42,7 +42,7 @@
 
         public override bool Equals(object type)
         {
-            var identityType = type as ExpresssionOperator;
+            var identityType = type as ExpressionOperator;
             return identityType != null && identityType._name.Equals(_name, StringComparison.OrdinalIgnoreCase);
         }
 
@@ -56,7 +56,7 @@
             return _name;
         }
 
-        public static ExpresssionOperator GetByName(string name)
+        public static ExpressionOperator GetByName(string name)
         {
             name = name.ToLowerInvariant();
 

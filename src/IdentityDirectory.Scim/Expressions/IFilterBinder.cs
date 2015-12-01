@@ -6,6 +6,6 @@
 
     public interface IFilterBinder
 	{
-		Expression<Func<TResource, bool>> Bind<TResource>(FilterExpresstion filter, string sortBy, bool @ascending, IAttributeNameMapper mapper = null);
+		Expression<Func<TResource, bool>> Bind<TResource>(ScimExpression filter, string sortBy, bool @ascending, IAttributeNameMapper mapper = null);
 	}
 }

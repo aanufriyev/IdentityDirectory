@@ -6,7 +6,11 @@
   "projectUrl": "",
   "licenseUrl": "",
   "frameworks": {
-    "dnx451": { },
+    "dnx451": {
+      "dependencies": {
+        "Moq": "4.2.1510.2205"
+      }
+    },
     "dnxcore50": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-beta-23409",
@@ -21,6 +25,7 @@
   "dependencies": {
     "IdentityDirectory.Abstractions": "1.0.0-*",
     "IdentityDirectory.Identity": "1.0.0-*",
-    "Microsoft.AspNet.Mvc": "6.0.0-beta8"
+    "Microsoft.AspNet.Mvc": "6.0.0-beta8",
+    "Sprache.CoreClr": "1.0.0"
   }
 }
